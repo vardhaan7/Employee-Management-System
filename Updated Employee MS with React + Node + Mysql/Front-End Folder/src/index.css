@@ -1,0 +1,258 @@
+/* ==== Modern base theme & utilities ==== */
+:root {
+  --bg: #0b1220;            /* deep navy */
+  --bg-soft: #0f172a;       /* slate-900 */
+  --card: #0f1b33;          /* glass base */
+  --card-2: #13203b;
+  --text: #e5e7eb;
+  --muted: #9aa4b2;
+  --primary: #3b82f6;       /* blue-500 */
+  --primary-2: #2563eb;     /* blue-600 */
+  --accent: #22c55e;        /* green-500 */
+  --warn: #f59e0b;          /* amber-500 */
+  --danger: #ef4444;        /* red-500 */
+  --ring: rgba(59,130,246,.35);
+  --radius: 16px;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --glass: rgba(255,255,255,.06);
+}
+
+html, body, #root {
+  height: 100%;
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(59,130,246,.15), transparent 40%),
+              radial-gradient(900px 500px at 110% 10%, rgba(34,197,94,.12), transparent 35%),
+              var(--bg);
+  color: var(--text);
+}
+
+* { box-sizing: border-box; }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* Cards */
+.glass {
+  background: linear-gradient(180deg, var(--glass), rgba(255,255,255,.03));
+  border: 1px solid rgba(255,255,255,.08);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+/* Buttons */
+.btn-primary-modern {
+  background: linear-gradient(180deg, var(--primary), var(--primary-2));
+  border: none; color: white;
+  border-radius: 12px; padding: .6rem 1rem;
+  box-shadow: 0 8px 20px rgba(59,130,246,.25);
+}
+.btn-primary-modern:hover { filter: brightness(1.05); }
+.btn-ghost {
+  background: transparent; color: var(--muted); border: 1px solid rgba(255,255,255,.1);
+  border-radius: 12px; padding: .55rem .9rem;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.2); color: var(--text); }
+
+/* Inputs */
+.input-modern {
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  color: var(--text);
+  border-radius: 12px; padding: .55rem .9rem;
+  outline: none;
+}
+.input-modern:focus { border-color: var(--primary); box-shadow: 0 0 0 4px var(--ring); }
+
+/* Badges */
+.badge {
+  padding: .35rem .6rem; border-radius: 999px; font-size: .75rem; font-weight: 600;
+}
+.badge-soft { background: rgba(255,255,255,.06); color: var(--muted); border: 1px solid rgba(255,255,255,.1); }
+.badge-green { background: rgba(34,197,94,.15); color: #86efac; border: 1px solid rgba(34,197,94,.25); }
+.badge-blue  { background: rgba(59,130,246,.15); color: #93c5fd; border: 1px solid rgba(59,130,246,.25); }
+.badge-amber { background: rgba(245,158,11,.15); color: #fcd34d; border: 1px solid rgba(245,158,11,.25); }
+.badge-red   { background: rgba(239,68,68,.15); color: #fecaca; border: 1px solid rgba(239,68,68,.25); }
+
+/* Table */
+.table-modern {
+  width: 100%; border-collapse: collapse; color: var(--text);
+}
+.table-modern thead th {
+  font-weight: 600; color: var(--muted);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+  padding: .8rem .75rem; text-transform: uppercase; font-size: .78rem; letter-spacing: .04em;
+}
+.table-modern tbody td {
+  padding: .9rem .75rem; border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+/* Layout helpers */
+.layout {
+  display: grid; grid-template-columns: 260px 1fr; min-height: 100vh;
+}
+.layout--collapsed { grid-template-columns: 80px 1fr; }
+.content { padding: 20px; }
+.topbar {
+  position: sticky; top: 0; z-index: 10; margin-bottom: 16px;
+  background: linear-gradient(180deg, rgba(11,18,32,.8), rgba(11,18,32,.4));
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+/* ========= Select dropdown visibility fixes ========= */
+
+/* The control itself (keeps your dark theme) */
+.select-modern {
+  color: var(--text);
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 12px;
+  padding: .55rem .9rem;
+  appearance: none;           /* modern browsers */
+  -webkit-appearance: none;   /* Safari */
+  -moz-appearance: none;      /* Firefox */
+}
+
+/* The native popup list (force readable contrast) */
+.select-modern option,
+.select-modern optgroup {
+  background: #ffffff;        /* light popup background */
+  color: #0b1220;             /* dark text */
+}
+
+/* Disabled/placeholder options */
+.select-modern option:disabled {
+  color: #9aa4b2;
+  background: #f5f7fb;
+}
+
+/* Windows high-contrast hints */
+@media (forced-colors: active) {
+  .select-modern option,
+  .select-modern optgroup {
+    background: Canvas;
+    color: CanvasText;
+  }
+}
+
+/* Focus ring to match the rest of your UI */
+.select-modern:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--ring);
+}
+
+/* === Scene & particles =================================== */
+.profile-scene {
+  position: relative;
+  min-height: calc(100vh - 120px);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.profile-particles {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  filter: blur(0.2px);
+}
+
+.profile-particles span {
+  --size: 6px;
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, #9ecbff, #3b82f6 55%, transparent 60%);
+  opacity: .35;
+  animation: float 12s linear infinite;
+
+}
+@keyframes float {
+  0% { transform: translateY(0) translateX(0) scale(1); }
+  50% { transform: translateY(-30px) translateX(10px) scale(1.1); }
+  100% { transform: translateY(0) translateX(0) scale(1); }
+}
+
+/* === 3D Tilt card ======================================= */
+.tilt-wrap {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.tilt-card {
+  width: min(680px, 92vw);
+  padding: 28px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  box-shadow: 0 20px 50px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.05);
+  transform: rotateX(var(--rx, 0)) rotateY(var(--ry, 0)) translateX(var(--tx, 0)) translateY(var(--ty, 0));
+  transition: transform .1s ease-out;
+}
+
+/* === Avatar with animated ring ========================== */
+.avatar-wrap {
+  position: relative;
+  width: 120px; height: 120px;
+  margin-inline: auto;
+}
+.avatar-ring {
+  position: absolute; inset: -6px;
+  border-radius: 999px;
+  background:
+    conic-gradient(from 0deg, #60a5fa, #a78bfa, #34d399, #f59e0b, #60a5fa);
+  filter: blur(1px);
+  animation: spin 6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.avatar {
+  position: absolute; inset: 6px;
+  display: grid; place-items: center;
+  border-radius: 999px;
+  font-weight: 800; font-size: 40px;
+  color: #eaf2ff;
+  background: radial-gradient(120% 120% at 10% 10%, #1f2940, #0b1220 70%);
+  box-shadow: inset 0 2px 8px rgba(255,255,255,.05);
+}
+
+/* === Info grid ========================================== */
+.grid-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 16px;
+  margin-top: 18px;
+}
+.grid-info div {
+  padding: 10px 12px;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+}
+.grid-info span { color: var(--muted, #93a0b5); font-size: .85rem; }
+.grid-info b { display:block; margin-top:4px; }
+
+/* === Magnetic buttons =================================== */
+.magnetic { position: relative; overflow: hidden; }
+.magnetic::after{
+  content:""; position:absolute; inset:-100%;
+  background: radial-gradient(200px 200px at var(--mx,50%) var(--my,50%), rgba(255,255,255,.14), transparent 60%);
+  transition: opacity .2s;
+  opacity: 0;
+}
+.magnetic:hover::after{ opacity: 1; }
+
+.button-row{
+  display:flex; gap:10px; justify-content:center; margin-top:18px;
+}
+
+/* (Optional) better ghost button look on dark */
+.btn-ghost{
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .layout { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,18 @@
+/* Reset legacy bootstrap overrides + minor utilities */
+.container-fluid { padding: 0 16px; }
+
+.card-modern { border: 1px solid rgba(255,255,255,.08); border-radius: var(--radius); overflow: hidden; }
+.card-modern .card-body { padding: 18px; }
+
+.shadow-soft { box-shadow: var(--shadow); }
+.text-muted-2 { color: var(--muted); }
+
+.link-muted { color: var(--muted); }
+.link-muted:hover { color: var(--text); }
+
+.action-icon {
+  width: 36px; height: 36px; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px; background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08); cursor: pointer;
+}
+.action-icon:hover { background: rgba(255,255,255,.12); }
